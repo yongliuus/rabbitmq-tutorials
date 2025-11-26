@@ -6,9 +6,9 @@ import pika
 
 
 def main():
-    connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host="localhost"),
-    )
+    credentials = pika.PlainCredentials('yongliu', 'rabbitmq')
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost', credentials=credentials))
+
     channel = connection.channel()
 
     channel.queue_declare(queue="hello")
